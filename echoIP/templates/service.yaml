@@ -1,15 +1,25 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "echoIP.fullname" . }}
+  name: {{ .Release.Name }}-service
+  namespace: {{ .Values.namespace }}
   labels:
-    {{- include "echoIP.labels" . | nindent 4 }}
+    app: echoip
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
   selector:
-    {{- include "echoIP.selectorLabels" . | nindent 4 }}
+    app: echoip
+  {{- if .Values.nodePort.enabled }}
+  type: NodePort
+  ports:
+  - name: web
+    port: {{ .Values.service.port | default 8080 }}
+    targetPort: 8080
+    {{- if .Values.nodePort.port }}
+    nodePort: {{ .Values.nodePort.port }}
+    {{ end }}
+  {{ else }}
+  ports:
+  - name: web
+    port: {{ .Values.service.port | default 8080 }}
+    targetPort: 8080
+  {{ end }}
