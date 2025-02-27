@@ -5,10 +5,22 @@ container:
   - "-H"
   - "X-Forwarded-For"
 
-namespace: reflector
+namespace: "reflector"
 service:
   port: 8080
 nodePort:
   enabled: false
-  # port: 30000
+  port: ""
 
+resources:
+  cpu:
+    request: "10m"
+    limit: "100m"
+  memory:
+    request: "20Mi"
+    limit: "50Mi"
+
+securityContext:
+  runAsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1000
