@@ -33,3 +33,31 @@ spec:
             cpu: {{ .Values.resources.cpu.request | default "10m" }}
             memory: {{ .Values.resources.memory.request | default "20Mi" }}
         args: {{ toYaml .Values.container.commandargs | nindent 8 }}
+{{- if .Values.geoDB.enabled }}
+        volumeMounts:
+        - name: geodatadir
+          mountPath: /geodata
+      initContainers:
+      - name: pullgeo
+        image: alpine:3
+        command: /usr/local/bin/entryscript.sh
+        env:
+        - name: GEOAUTH
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.geoDB.secret.name }}
+              key: {{ .Values.geoDB.secret.key }}
+        volumeMounts:
+        - name: geodatadir
+          mountPath: /geodata
+        - name: geoscript
+          mountPath: /usr/local/bin/entryscript.sh
+          subPath: entryscript.sh
+      volumes:
+      - name: geodatadir
+        emptyDir: {}
+      - name: geoscript
+        configMap:
+          defaultMode: 0555
+          name: geodl
+{{ end }}
