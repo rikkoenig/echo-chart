@@ -3,10 +3,10 @@ entries:
   echoip:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-02-28T19:59:17.429303-05:00"
+    created: "2025-02-28T21:48:22.648484-05:00"
     description: echoip is a service to give a user their public adress, and associated
       information.
-    digest: 31ad5a53946214db4967b1b057580e3ee6eb08855e1a37b07df5efdecbe1c49f
+    digest: 11a59f12bb88826d84916352adbb0ee13d50d2746671ba23d1b17016c70dd064
     home: https://github.com/mpolden/echoip
     kubeVersion: '>= 1.25.0'
     name: echoip
@@ -16,7 +16,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2025-02-28T19:59:17.429076-05:00"
+    created: "2025-02-28T21:48:22.648207-05:00"
     description: echoip is a service to give a user their public adress, and associated
       information.
     digest: e8bc8784dbcc845d98e4491c9d31483fb3510b32a0aaf0889da9dfd43275998b
@@ -27,4 +27,4 @@ entries:
     urls:
     - echoip-0.2.0.tgz
     version: 0.2.0
-generated: "2025-02-28T19:59:17.427972-05:00"
+generated: "2025-02-28T21:48:22.647568-05:00"
