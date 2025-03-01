@@ -41,7 +41,8 @@ spec:
       initContainers:
       - name: pullgeo
         image: alpine:3
-        command: /usr/local/bin/entryscript.sh
+        command: 
+        - /usr/local/bin/entryscript.sh
         env:
         - name: GEOAUTH
           valueFrom:
