@@ -34,7 +34,7 @@ spec:
             memory: {{ .Values.resources.memory.request | default "20Mi" }}
         args: {{ toYaml .Values.container.commandargs | nindent 8 }}
 {{- if .Values.geoDB.enabled }}
-{{ include "echoip.geolist" | nindent 8 }}
+{{- include "echoip.geolist" . | indent 8 }}
         volumeMounts:
         - name: geodatadir
           mountPath: /geodata
@@ -61,4 +61,4 @@ spec:
         configMap:
           defaultMode: 0555
           name: geodl
-{{ end }}
+{{- end -}}
