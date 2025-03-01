@@ -1,4 +1,4 @@
-{{/* generate opts for geodata}}
+{{/* generate opts for geodata */}}
 {{- define "echoip.geolist" }}
 - "-a"
 - "/geodata/GeoLite2-ASN.mmdb"
